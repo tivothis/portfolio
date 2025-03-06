@@ -1,6 +1,7 @@
 import headshot from './headshot.jpg';
 import './App.css';
 import { Grid, Container } from '@mui/material';
+import Portfolio from './Portfolio';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
       <header className="App-header">
         <Container flexDirection='column'  style={{padding: '2em', justifyContent: 'center', alignItems: 'center', minheight: '100vh'}}>
           <h1>Hi, I'm Tony 👋</h1>
-          <Grid container spacing={2} style={{padding: '2em', height: '100vh'}}>
+          <Grid container spacing={2} style={{padding: '2em 2em 0 2em', height: '100vh'}}>
             <Grid item xs={12} md={4}>
               <img width='300px' style={{ borderRadius: '50%' }} src={headshot} className="headshot" alt="headshot" />
             </Grid>
@@ -20,41 +21,14 @@ function App() {
               </div>
             </Grid>
             <Grid item xs={12} md={12}>
-              <ArrowDropDownIcon style={{fontSize: '50px'}} className="bounce" />
+              <a href={'#projects'}>
+                <ArrowDropDownIcon style={{fontSize: '50px', color: 'white'}} className="bounce" />
+              </a>
             </Grid>
           </Grid>
-        </Container>
 
-        <Grid container spacing={3} style={{padding: '2em'}}>
-          <Grid item xs={12} md={12}>
-            <h2>A few projects that I've worked on</h2>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div style={{textAlign: 'left'}}>
-              <h3>Project 1</h3>
-              <p style={{fontSize: '18px'}}>This is a project I worked on. It was a lot of fun and I learned a lot.</p>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div style={{textAlign:
-            'left'}}>
-              <h3>Project 2</h3>
-              <p style={{fontSize: '18px'}}>This is a project I worked on. It was a lot of fun and I learned a lot.</p>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div style={{textAlign: 'left'}}>
-              <h3>Project 3</h3>
-              <p style={{fontSize: '18px'}}>This is a project I worked on. It was a lot of fun and I learned a lot.</p>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <div style={{textAlign: 'left'}}>
-              <h3>Project 4</h3>
-              <p style={{fontSize: '18px'}}>This is a project I worked on. It was a lot of fun and I learned a lot.</p>
-            </div>
-          </Grid>
-        </Grid>
+          <Portfolio />
+        </Container>
 
       </header>
     </div>
