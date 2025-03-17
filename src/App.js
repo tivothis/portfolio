@@ -16,7 +16,7 @@ function App() {
             </Grid>
             <Grid item xs={12} md={8}>
               <div style={{textAlign: 'left'}}>
-                <h3>I’m a multidisclipinary web developer and web designer. I’m passionate about the intersection of technology and the arts. 💻 🎨</h3>
+                <h3>I’m a multidisclipinary web developer, designer and software engineer. I’m passionate about the intersection of technology and the arts. 💻 🎨</h3>
                 <p style={{fontSize: '18px'}}>I spent the last decade in New York City working professionally in the performing arts as a professional actor and musician. I got interested in web design after helping other artists with their portfolios. I ventured into programming after founding a start up called Audition Cat to help performers keep track of their networks and auditions.</p>
               </div>
             </Grid>
