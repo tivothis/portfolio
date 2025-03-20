@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
@@ -18,11 +18,11 @@ export default function Portfolio() {
 
 
   return (
-    <Grid container spacing={10} style={{padding: '0 2em 2em 2em'}} id='projects'>
-          <Grid item xs={12} md={12}>
+    <Grid container spacing={10} style={{padding: '0 2em 2em 2em', height: "100vh"}} id='projects' >
+          <Grid size={{ xs:12, md:12 }}>
             <h2>A few projects that I've worked on</h2>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs:12, md:6 }} >
             <Box style={{ overflow: 'hidden'}} className="image-wrapper">
               <img src={northshore} alt="northshore" style={{width: '100%', borderRadius: '15px'}} />
               <div className="overlay">
@@ -44,7 +44,7 @@ export default function Portfolio() {
               </div>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs:12, md:6 }}>
             <Box style={{overflow: 'hidden'}} className="image-wrapper">
               <img src={auditioncat} alt="auditioncat" style={{width: '100%', borderRadius: '15px'}} />
               <div className="overlay">
@@ -69,7 +69,7 @@ export default function Portfolio() {
               </div>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs:12, md:6 }}>
             <Box style={{overflow: 'hidden'}} className="image-wrapper">
               <img src={aatac} alt="aatac" style={{width: '100%', borderRadius: '15px'}} />
               <div className="overlay">
@@ -94,7 +94,7 @@ export default function Portfolio() {
               </div>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs:12, md:6 }}>
             <Box style={{overflow: 'hidden'}} className="image-wrapper">
               <img src={geoff} alt="geoff" style={{width: '100%', borderRadius: '15px'}} />
               <div className="overlay">
