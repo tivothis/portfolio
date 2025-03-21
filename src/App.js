@@ -1,14 +1,20 @@
 import headshot from './headshot.jpg';
+import {useState} from 'react';
 import './App.css';
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import Portfolio from './Portfolio';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faHtml5, faCss, faJs, faNodeJs, faDocker, faAws } from '@fortawesome/free-brands-svg-icons';
+import { faReact, faHtml5, faCss, faJs, faNodeJs, faDocker, faAws, faLinkedin, faGithub, faGitlab } from '@fortawesome/free-brands-svg-icons';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function App() {
+  const [hoveredIcon, setHoveredIcon] = useState(null);
+
+  const handleMouseEnter = (icon) => setHoveredIcon(icon);
+  const handleMouseLeave = () => setHoveredIcon(null);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -118,14 +124,14 @@ function App() {
             </Grid>
             <Grid size={2}  style={{textAlign: 'center'}}>
               <div>
-                <FontAwesomeIcon icon={faDocker} style={{ fontSize: '50px', color: '#61DBFB' }} />
-                <p style={{margin: 0, fontSize: "16px"}}>Docker</p>
+              <div class="icons8-wordpress"></div>
+                <p style={{margin: 0, fontSize: "16px"}}>WordPress</p>
               </div>
             </Grid>
             <Grid size={2}  style={{textAlign: 'center'}}>
               <div>
-              <div class="icons8-wordpress"></div>
-                <p style={{margin: 0, fontSize: "16px"}}>WordPress</p>
+                <FontAwesomeIcon icon={faDocker} style={{ fontSize: '50px', color: '#61DBFB' }} />
+                <p style={{margin: 0, fontSize: "16px"}}>Docker</p>
               </div>
             </Grid>
             <Grid size={2}  style={{textAlign: 'center'}}>
@@ -141,6 +147,49 @@ function App() {
               </div>
             </Grid>
           </Grid>
+
+          <Container height={"70vh"} style={{marginTop:"6em"}} >
+            <Grid container spacing={2} style={{ height: "70vh"}}>
+              <Grid size={6} style={{textAlign: "start"}}>
+                <h3>
+                  Let's Make Something Together 🚀
+                </h3>
+                <p style={{ fontSize: "16px" }}>
+                  I'm currently looking for new opportunities to collaborate on exciting projects. If you're looking for a developer, designer or software engineer, I'd love to hear from you!
+                </p>
+                <div>
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    style={{
+                      marginRight: '1em',
+                      color: hoveredIcon === 'linkedin' ? '#0077b5' : 'white', // Change color on hover
+                    }}
+                    onMouseEnter={() => handleMouseEnter('linkedin')}
+                    onMouseLeave={handleMouseLeave}
+                    />
+                    <FontAwesomeIcon
+                    icon={faGithub}
+                    style={{
+                      marginRight: '1em',
+                      color: hoveredIcon === 'github' ? '#aaa' : 'white', // Change color on hover
+                    }}
+                    onMouseEnter={() => handleMouseEnter('github')}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                  <FontAwesomeIcon
+                    icon={faGitlab}
+                    style={{
+                      color: hoveredIcon === 'gitlab' ? '#fc6d26' : 'white', // Change color on hover
+                    }}
+                    onMouseEnter={() => handleMouseEnter('gitlab')}
+                    onMouseLeave={handleMouseLeave}
+                  />
+                </div>
+              </Grid>
+
+            </Grid>
+
+          </Container>
 
         </Container>
 
