@@ -18,7 +18,7 @@ export default function Portfolio() {
 
 
   return (
-    <Grid container spacing={10} style={{padding: '0 2em 2em 2em', height: "100vh"}} id='projects' >
+    <Grid container spacing={10} style={{padding: '0 2em 2em 2em', minHeight: "100vh"}} id='projects' >
           <Grid size={{ xs:12, md:12 }}>
             <h2>A few projects that I've worked on</h2>
           </Grid>
@@ -83,7 +83,7 @@ export default function Portfolio() {
                     <Chip label="CSS" color="secondary" />
                     <Chip label="JavaScript" color="success" />
                     <Chip label="PHP" color="warning" />
-                    <Chip label="120+ Users" color="primary" />
+                    <Chip label="160+ Users" color="primary" />
                 </Stack>
                 <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}
                   onClick={() => window.open('https://aatheatreartists.com/', '_blank')}
