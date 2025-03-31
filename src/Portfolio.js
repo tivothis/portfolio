@@ -61,7 +61,7 @@ export default function Portfolio() {
                     <Chip label="Docker" color="primary" />
                 </Stack>
                 <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}
-                  onClick={() => window.open('http://ec2-3-88-11-44.compute-1.amazonaws.com:4000/network', '_blank')}
+                  onClick={() => window.open('http://ec2-3-88-11-44.compute-1.amazonaws.com:4000/network', '_blank', 'noopener noreferrer')}
                 >
                   View MVP
                 </Button>
@@ -86,7 +86,7 @@ export default function Portfolio() {
                     <Chip label="160+ Users" color="primary" />
                 </Stack>
                 <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}
-                  onClick={() => window.open('https://aatheatreartists.com/', '_blank')}
+                  onClick={() => window.open('https://aatheatreartists.com/', '_blank', 'noopener noreferrer')}
                 >
                   View Directory
                 </Button>
@@ -108,7 +108,7 @@ export default function Portfolio() {
                     <Chip label="CSS" color="secondary"/>
                 </Stack>
                 <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}
-                  onClick={() => window.open('https://geoffreykent.com/', '_blank')}
+                  onClick={() => window.open('https://geoffreykent.com/', '_blank', 'noopener noreferrer')}
                 >
                   View Website
                 </Button>
