@@ -1,4 +1,5 @@
 import headshot from './headshot.jpg';
+import caldi from './caldi.jpg';
 import { useState, useRef } from 'react';
 import './App.css';
 import { Container, Box } from '@mui/material';
@@ -113,7 +114,7 @@ function App() {
           <Grid container spacing={2} style={{padding: '2em 2em 0 2em', minHeight: '100vh'}} alignItems="center" justifyContent="center">
             <Grid size={{ sm: 12, md: 4}}>
 
-                <img width='300px' style={{ borderRadius: '50%' }} src={headshot} className="headshot" alt="headshot" />
+                <img width='300px' style={{ borderRadius: '25px' }} src={caldi} className="headshot" alt="headshot" />
 
             </Grid>
             <Grid size={{ sm: 12, md: 8 }}>
@@ -137,15 +138,15 @@ function App() {
 
           <Box sx={{ marginTop: { xs: '4em', md: '2em' } }}>
               <Grid container spacing={2} style={{ padding: '2em 2em 0 2em', minHeight: '70vh' }}>
-                <Grid size={{ xs: 12, md: 4 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <img width="300px" style={{ borderRadius: '50%' }} src={headshot} className="headshot" alt="headshot" />
-                </Grid>
                 <Grid size={{ xs: 12, md: 8 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ textAlign: 'left' }}>
                     <p style={{ fontSize: '18px', color: "black" }}>
                       I spent the last decade in New York City working professionally in the performing arts as a professional actor and musician. I got interested in web design after helping other artists with their portfolios. I ventured into programming after founding a start up called Audition Cat to help performers keep track of their networks and auditions.
                     </p>
                   </div>
+                </Grid>
+                <Grid size={{ xs: 12, md: 4 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <img width="300px" style={{ borderRadius: '25px' }} src={headshot} className="headshot" alt="headshot" />
                 </Grid>
                 <Grid size={{ xs: 12, md: 12 }}>
                   <a href={'#tools'}>
