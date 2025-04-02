@@ -1,10 +1,11 @@
 import headshot from './headshot.jpg';
 import caldi from './caldi.jpg';
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import { Container, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu'; // Import MUI Menu Icon
-// import CloseIcon from '@mui/icons-material/Close'; // Import MUI Close Icon
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Grid from '@mui/material/Grid2';
 import Portfolio from './Portfolio';
@@ -12,13 +13,28 @@ import MyToolKit from './MyToolKit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub, faGitlab } from '@fortawesome/free-brands-svg-icons';
 import emailjs from 'emailjs-com';
-
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: '#f5f5dc',
+  border: '2px solid #237649',
+  boxShadow: 24,
+  p: 4,
+};
 
 function App() {
   const [hoveredIcon, setHoveredIcon] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalContent, setModalContent] = useState('');
   const handleMouseEnter = (icon) => setHoveredIcon(icon);
   const handleMouseLeave = () => setHoveredIcon(null);
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -36,10 +52,16 @@ function App() {
     )
     .then((result) => {
       console.log('Email sent successfully:', result.text);
-      alert('Your message has been sent!');
+      // alert('Your message has been sent!');
+      setModalTitle('Success!');
+      setModalContent('Your message has been sent!');
+      handleModalOpen(true)
     }, (error) => {
       console.error('Error sending email:', error.text);
-      alert('Failed to send your message. Please try again.');
+      setModalTitle('Uh Oh!');
+      setModalContent('Failed to send your message. Please try again.');
+      handleModalOpen(true)
+      // alert('Failed to send your message. Please try again.');
     });
 
     e.target.reset(); // Reset the form after submission
@@ -111,7 +133,7 @@ function App() {
           alignItems: 'center',
           minheight: '100vh'}}
         >
-          <Grid container spacing={2} style={{padding: '2em 2em 0 2em', minHeight: '100vh'}} alignItems="center" justifyContent="center">
+          <Grid container spacing={3} style={{padding: '2em 2em 0 2em', minHeight: '100vh'}} alignItems="center" justifyContent="center">
             <Grid size={{ sm: 12, md: 4}}>
 
                 <img width='300px' style={{ borderRadius: '25px' }} src={caldi} className="headshot" alt="headshot" />
@@ -137,7 +159,7 @@ function App() {
             <Portfolio />
 
           <Box sx={{ marginTop: { xs: '4em', md: '2em' } }}>
-              <Grid container spacing={2} style={{ padding: '2em 2em 0 2em', minHeight: '70vh' }}>
+              <Grid container spacing={3} style={{ padding: '2em 2em 0 2em', minHeight: '70vh' }} >
                 <Grid size={{ xs: 12, md: 8 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ textAlign: 'left' }}>
                     <p style={{ fontSize: '18px', color: "black" }}>
@@ -145,7 +167,7 @@ function App() {
                     </p>
                   </div>
                 </Grid>
-                <Grid size={{ xs: 12, md: 4 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Grid size={{ xs: 12, md: 4 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <img width="300px" style={{ borderRadius: '25px' }} src={headshot} className="headshot" alt="headshot" />
                 </Grid>
                 <Grid size={{ xs: 12, md: 12 }}>
@@ -172,7 +194,7 @@ function App() {
                   I'm currently looking for new opportunities to collaborate on exciting projects. If you're looking for a developer, designer or software engineer, I'd love to hear from you!
                 </p>
                 <div>
-                  <a href="http://www.linkedin.com/in/votony12" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/votony12" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon
                     icon={faLinkedin}
                     style={{
@@ -184,7 +206,7 @@ function App() {
                     onMouseLeave={handleMouseLeave}
                     />
                   </a>
-                  <a href="http://www.github.com/tivothis" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.github.com/tivothis" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon
                     icon={faGithub}
                     style={{
@@ -221,6 +243,22 @@ function App() {
                   </form>
                 </Grid>
             </Grid>
+
+            <Modal
+              open={modalOpen}
+              onClose={handleModalClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2" color="#237649">
+                  {modalTitle}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }} color="#237649">
+                  {modalContent}
+                </Typography>
+              </Box>
+            </Modal>
 
           </Container>
           <Container
