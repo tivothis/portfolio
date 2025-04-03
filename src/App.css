@@ -129,3 +129,8 @@ html {
 .menu-closed {
   transform: translateY(-100%); /* Slide up out of view */
 }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #237649;
+  text-shadow: 3px 3px 4px #a8d5ba;
+}

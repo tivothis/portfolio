@@ -187,7 +187,9 @@ function App() {
       <Container minHeight={"50vh"} style={{ padding: "1em"}} >
             <Grid container spacing={2} style={{ minHeight: "70vh"}}>
               <Grid size={{ xs: 12, md:6 }} style={{textAlign: "start", paddingLeft: '1em'}} display="flex" flexDirection="column" justifyContent="center" >
-                <h2 style={{color: '#237649'}}>
+                <h2 style={{
+                  color: '#237649',
+                  }}>
                   Let's Make Something Dope Together 🚀
                 </h2>
                 <p style={{ fontSize: "18px", color: "black" }}>
@@ -264,14 +266,14 @@ function App() {
           <Container
             style={{
               margin: '0',
-              padding: '.5em 0 .5em 0', // Remove padding
+              padding: '.5em 0 .5em 0',
               textAlign: 'center',
               backgroundColor: '#237649',
-              width: '100%', // Ensure full width
+              width: '100%',
             }}
-            maxWidth="none" // Disable default maxWidth restriction
+            maxWidth="none"
           >
-            <p style={{ color: 'white' }}>© 2025 Designed and Developed by Tony Vo</p>
+            <p style={{ color: 'white' }}>© {new Date().getFullYear()} Designed and Developed by Tony Vo</p>
           </Container>
       </footer>
     </div>
