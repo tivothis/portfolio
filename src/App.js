@@ -2,6 +2,7 @@ import headshot from './headshot.jpg';
 import caldi from './caldi.jpg';
 import React, { useState, useRef } from 'react';
 import './App.css';
+import { useMediaQuery } from '@mui/material';
 import { Container, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu'; // Import MUI Menu Icon
 import Modal from '@mui/material/Modal';
@@ -28,6 +29,7 @@ const modalStyle = {
 };
 
 function App() {
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
   const [hoveredIcon, setHoveredIcon] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -44,25 +46,48 @@ function App() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    if (!form.current) {
+      console.error('Form reference is not set.');
+      return;
+    }
+
     emailjs.sendForm(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID, // Replace with your EmailJS service ID
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // Replace with your EmailJS template ID
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
       form.current,
-      process.env.REACT_APP_EMAILJS_PUBLIC_KEY // Replace with your EmailJS public key
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY
     )
     .then((result) => {
       console.log('Email sent successfully:', result.text);
-      // alert('Your message has been sent!');
       setModalTitle('Success!');
       setModalContent('Your message has been sent!');
-      handleModalOpen(true)
-    }, (error) => {
+      handleModalOpen(true);
+    })
+    .catch((error) => {
       console.error('Error sending email:', error.text);
       setModalTitle('Uh Oh!');
       setModalContent('Failed to send your message. Please try again.');
-      handleModalOpen(true)
-      // alert('Failed to send your message. Please try again.');
+      handleModalOpen(true);
     });
+
+    // // Directly pass form.current to emailjs.sendForm
+    // emailjs.sendForm(
+    //   process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    //   process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+    //   form.current, // Pass the form reference here
+    //   process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+    // )
+    // .then((result) => {
+    //   console.log('Email sent successfully:', result.text);
+    //   setModalTitle('Success!');
+    //   setModalContent('Your message has been sent!');
+    //   handleModalOpen(true);
+    // }, (error) => {
+    //   console.error('Error sending email:', error.text);
+    //   setModalTitle('Uh Oh!');
+    //   setModalContent('Failed to send your message. Please try again.');
+    //   handleModalOpen(true);
+    // });
 
     e.target.reset(); // Reset the form after submission
   };
@@ -70,6 +95,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
       <button
           onClick={toggleMenu}
           style={{
@@ -86,7 +112,12 @@ function App() {
           {menuOpen ? (
             <KeyboardArrowUpIcon style={{ fontSize: '50px', color: 'white' }} />
           ) : (
-            <MenuIcon style={{ fontSize: '30px', color: '#237649' }} />
+            <MenuIcon style={{
+              fontSize: '30px',
+              color: '#237649',
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              borderRadius: '5px'
+            }} />
           )}
         </button>
 
@@ -133,7 +164,10 @@ function App() {
           alignItems: 'center',
           minheight: '100vh'}}
         >
-          <Grid container spacing={3} style={{padding: '2em 2em 0 2em', minHeight: '100vh'}} alignItems="center" justifyContent="center">
+          <Grid container spacing={3} style={{
+            padding: isSmallScreen? '0' : '2em 2em 0 2em',
+            minHeight: '100vh'}}
+            alignItems="center" justifyContent="center">
             <Grid size={{ sm: 12, md: 4}}>
 
                 <img width='300px' style={{ borderRadius: '25px' }} src={caldi} className="headshot" alt="headshot" />
@@ -141,7 +175,7 @@ function App() {
             </Grid>
             <Grid size={{ sm: 12, md: 8 }}>
 
-                <div style={{textAlign: 'left'}}>
+                <div style={{textAlign: isSmallScreen? 'center' : 'left'}}>
                   <h1>Hi, I'm Tony 👋</h1>
                   <p style={{ color: "black" }}>I’m a multidisclipinary web developer, designer and software engineer. I’m passionate about the intersection of technology and the arts. 💻 🎨</p>
                 </div>
@@ -159,9 +193,12 @@ function App() {
             <Portfolio />
 
           <Box sx={{ marginTop: { xs: '4em', md: '2em' } }}>
-              <Grid container spacing={3} style={{ padding: '2em 2em 0 2em', minHeight: '70vh' }} >
+              <Grid container spacing={3} style={{
+                padding: isSmallScreen? '0' :'2em 2em 0 2em',
+                minHeight: '70vh'
+                }} >
                 <Grid size={{ xs: 12, md: 8 }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div style={{ textAlign: 'left' }}>
+                  <div style={{ textAlign: isSmallScreen? 'center' : 'left' }}>
                     <p style={{ fontSize: '18px', color: "black" }}>
                       I spent the last decade in New York City working professionally in the performing arts as a professional actor and musician. I got interested in web design after helping other artists with their portfolios. I ventured into programming after founding a start up called Audition Cat to help performers keep track of their networks and auditions.
                     </p>
@@ -186,7 +223,7 @@ function App() {
       <footer style={{ backgroundColor: '#f5f5dc' }} id="contact">
       <Container minHeight={"50vh"} style={{ padding: "1em"}} >
             <Grid container spacing={2} style={{ minHeight: "70vh"}}>
-              <Grid size={{ xs: 12, md:6 }} style={{textAlign: "start", paddingLeft: '1em'}} display="flex" flexDirection="column" justifyContent="center" >
+              <Grid size={{ xs: 12, md:6 }} style={{textAlign: isSmallScreen? "center" : "start", paddingLeft: '1em'}} display="flex" flexDirection="column" justifyContent="center" >
                 <h2 style={{
                   color: '#237649',
                   }}>
@@ -235,14 +272,14 @@ function App() {
               </Grid>
               <Grid size={{ xs: 12, md:6 }} style={{textAlign: "start"}} display="flex" flexDirection="column" justifyContent="center" >
                 <h3 style={{ color: '#237649', marginLeft:'0.25em', marginBottom: '0' }}>Hit Me Up!</h3>
-                  <form ref={form} onSubmit={sendEmail} style={{ paddingRight: '3em', textAlign: 'start' }}>
-                    <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required style={{ margin: '0.5em', padding: '1em', width:'100%' }} />
-                    <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required style={{ margin: '0.5em', padding: '1em', width:'100%' }} />
-                    <textarea name="message" placeholder="Your Message" aria-label="Your Message" required style={{ margin: '0.5em', padding: '1em', minHeight: '50px', width: '100%' }} />
-                    <button type="submit" style={{ marginLeft:'0.35em', padding: '1em 2em 1em 2em', fontSize: '16px', backgroundColor: '#237649', color: 'white', border: 'none', borderRadius: '5px' }}>
-                      Send
-                    </button>
-                  </form>
+                <form ref={form} onSubmit={sendEmail} style={{ paddingRight: '3em', textAlign: 'start' }}>
+                  <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required style={{ margin: '0.5em', padding: '1em', width:'100%' }} />
+                  <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required style={{ margin: '0.5em', padding: '1em', width:'100%' }} />
+                  <textarea name="message" placeholder="Your Message" aria-label="Your Message" required style={{ margin: '0.5em', padding: '1em', minHeight: '50px', width: '100%' }} />
+                  <button type="submit" style={{ marginLeft:'0.35em', padding: '1em 2em 1em 2em', fontSize: '16px', backgroundColor: '#237649', color: 'white', border: 'none', borderRadius: '5px' }}>
+                    Send
+                  </button>
+                </form>
                 </Grid>
             </Grid>
 

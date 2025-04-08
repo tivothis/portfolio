@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useMediaQuery } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -13,12 +14,15 @@ import aatac from './images/aatac.png';
 
 
 export default function Portfolio() {
-
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
 
 
 
   return (
-    <Grid container spacing={10} style={{padding: '0 2em 2em 2em', minHeight: "100vh"}} id='projects' >
+    <Grid container spacing={10} style={{
+      padding: isSmallScreen ? '0' : '0 2em 2em 2em',
+      minHeight: "100vh"
+      }} id='projects' >
           <Grid size={{ xs:12, md:12 }}>
             <h2>A few projects that I've worked on</h2>
           </Grid>
@@ -37,7 +41,8 @@ export default function Portfolio() {
                     <Chip label="JavaScript" color="success" />
                     <Chip label="PHP" color="warning" />
                   </Stack>
-                  <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}>
+                  <Button variant="contained" style={{ backgroundColor: '#fff', color: 'black', marginTop: "1em" }}
+                    onClick={() => window.open('https://dribbble.com/tvo_this', '_blank', 'noopener noreferrer')}>
                     View Mock Ups
                   </Button>
                 </div>
